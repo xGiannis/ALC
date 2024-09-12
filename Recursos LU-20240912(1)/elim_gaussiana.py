@@ -16,16 +16,29 @@ def elim_gaussiana(A):
         return
     
     ## desde aqui -- CODIGO A COMPLETAR
+    L = np.eye(n) #inciamos L de nxn
+
+    #Gaussian Elimination
+    for i in range(n):
+        if Ac[i,i]==0:
+            # ...
+            # aca supongo q tengo q hacer la permutacion ||| NO!!!!!!!! ES SIN PERMUTACION
+            print(f"Pivote {i} es nulo")
+            return
 
 
+        for j in range(i+1, n):
+            factor = Ac[j,i] / Ac[i,i]#aca va q multiplico entre las matrices para q de 0.
+            L[j,i] = factor # guardamos el factor en la matriz L 
+            Ac[j,i:] = Ac[j,i:]  - factor*Ac[i,i:]
+            #cant_operaciones #... n por algo
+            print(f"Matriz L despuse del paso ({j},{i})")
+            print(L) 
 
-
-
-                
     ## hasta aqui
             
-    L = np.tril(Ac,-1) + np.eye(A.shape[0]) 
-    U = np.triu(Ac)
+    #L = np.tril(Ac,-1) + np.eye(A.shape[0]) 
+    #U = np.triu(Ac)
     
     return L, U, cant_op
 
